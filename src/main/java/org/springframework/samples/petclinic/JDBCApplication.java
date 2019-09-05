@@ -66,7 +66,7 @@ public class JDBCApplication {
 			System.out.println("\n\n===== EJERCICIO 5 ===== ");
 			Ejercicios.ejercicio5(connection);
 			System.out.println(" \n\n===== RETO =====");
-			// Ejercicios.reto();
+			 Ejercicios.reto(connection, statement);
 		} catch (SQLException e) {
 			System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();
