@@ -8,12 +8,23 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.samples.petclinic.owner.Owner;
 
 public class JDBCApplication {
 
 	public static void main(String[] args) {
+		
+
+		Owner owner = new Owner();
+		owner.setFirstName("Jonas");
+		owner.setLastName("Jonas");
+		owner.setAddress("chelas");
+		owner.setCity("Lisboa");
+		owner.setTelephone("92333444");
+		
+		
 		SpringApplication.run(PetClinicApplication.class, args);
-		System.out.println("-------- Test de conexión con MySQL ------------");
+			System.out.println("-------- Test de conexión con MySQL ------------");
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -66,7 +77,7 @@ public class JDBCApplication {
 			System.out.println("\n\n===== EJERCICIO 5 ===== ");
 			Ejercicios.ejercicio5(connection);
 			System.out.println(" \n\n===== RETO =====");
-			 Ejercicios.reto(connection, statement);
+			 Ejercicios.reto(connection, owner);
 		} catch (SQLException e) {
 			System.out.println("Connection Failed! Check output console");
 			e.printStackTrace();

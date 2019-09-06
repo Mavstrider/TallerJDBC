@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.springframework.samples.petclinic.owner.Owner;
+
 public class Ejercicios {
 
 	public static void ejercicio1(Connection connection, Statement statement) throws SQLException {
@@ -95,7 +97,7 @@ public class Ejercicios {
 		// teléfono (todas de tipo
 		// String), un nuevo owner
 		String SQL_INSERT = "INSERT INTO owners (first_name, last_name, address, city, telephone) VALUES (?,?,?,?,?)";
-		int numeroDeFilasModificadas = -1;
+		
 		   PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT);
 
 	            preparedStatement.setString(1, "antonio");
@@ -103,7 +105,7 @@ public class Ejercicios {
 	            preparedStatement.setString(3, "expo");
 	            preparedStatement.setString(4, "lisboa");
 	            preparedStatement.setString(5, "920349699");
-	           
+	            int numeroDeFilasModificadas = -1;       
 
 	            int row = preparedStatement.executeUpdate();
 		System.out.println("Se han modificado " + row + " rows.");
@@ -111,7 +113,22 @@ public class Ejercicios {
 
 	}
 
-	public static void reto(Connection connection, Statement statement) throws SQLException {
+	public static void reto(Connection connection,Owner owner) throws SQLException {
+		
+	
+	String SQL_INSERTowner = "INSERT INTO owners (first_name, last_name, address, city, telephone) VALUES (?,?,?,?,?)";
+		int numeroDeFilasModificadas = -1;
+		   PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERTowner);
+
+	            preparedStatement.setString(1, owner.getFirstName());
+	            preparedStatement.setString(2, owner.getLastName());
+	            preparedStatement.setString(3, owner.getAddress());
+	            preparedStatement.setString(4, owner.getCity());
+	            preparedStatement.setString(5, owner.getTelephone());
+	           
+
+	            numeroDeFilasModificadas = preparedStatement.executeUpdate();
+		System.out.println("Se han modificado " + numeroDeFilasModificadas + " rows.");
 
 	}
 
