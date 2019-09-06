@@ -60,9 +60,15 @@ public class Owner extends Person {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private Set<Pet> pets;
+    
+    /*Adicionei*/
+  /*  @OneToMany(cascade=CascadeType.ALL, mappedBy ="owner")
+    private Set<Bill> bills;
+    */
+    
 
 
-    public String getAddress() {
+	public String getAddress() {
         return this.address;
     }
 
@@ -140,6 +146,14 @@ public class Owner extends Person {
         return null;
     }
 
+  /*  public Set<Bill> getBills() {
+		return bills;
+	}
+
+	public void setBills(Set<Bill> bills) {
+		this.bills = bills;
+	}*/
+	
     @Override
     public String toString() {
         return new ToStringCreator(this)

@@ -60,6 +60,11 @@ public class Visit extends BaseEntity {
      */
     @Column(name = "pet_id")
     private Integer petId;
+    
+ 
+    
+    @OneToOne(fetch = FetchType.LAZY)
+    private Bill bill;
 
 
     /**
@@ -68,6 +73,7 @@ public class Visit extends BaseEntity {
     public Visit() {
         this.date = new Date();
     }
+  
 
 
     /**
@@ -126,8 +132,7 @@ public class Visit extends BaseEntity {
     
     // Hibernate
     
-    @OneToOne(fetch = FetchType.LAZY)
-    private Bill bill;
+  
 
 
     public Bill getBill() {

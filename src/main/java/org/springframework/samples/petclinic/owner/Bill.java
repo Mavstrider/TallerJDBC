@@ -2,10 +2,12 @@ package org.springframework.samples.petclinic.owner;
 
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -16,8 +18,6 @@ import javax.validation.constraints.Digits;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.visit.Visit;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="facturas")
@@ -35,9 +35,17 @@ public class Bill extends BaseEntity {
 	private double money;
 	
 	@OneToOne(fetch = FetchType.LAZY, mappedBy = "bill", cascade = CascadeType.ALL)
-	@JsonIgnore
 	private Visit visit;
 	
+	//@ManyToOne
+	//@JoinColumn (name="owner")
+	//private Owner owner;
+	
+	@OneToMany( cascade = CascadeType.ALL, mappedBy = "bill")
+	private List<LineasdeFacturas> lineasdefactura;
+	
+	
+
 	public Bill () { }
 
 	public long getIdNumber() {
@@ -71,6 +79,26 @@ public class Bill extends BaseEntity {
 	public void setVisit(Visit visit) {
 		this.visit = visit;
 	}
+	public List<LineasdeFacturas> getLineasdefactura() {
+		return lineasdefactura;
+	}
+
+	public void setLineasdefactura(List<LineasdeFacturas> lineasdefactura) {
+		this.lineasdefactura = lineasdefactura;
+
+/*	public Owner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Owner owner) {
+		this.owner = owner;
+	}*/
 	
-	
+	}
+
+	@Override
+	public String toString() {
+		return "Bill [idNumber=" + idNumber + ", paymentDate=" + paymentDate + ", money=" + money + ", visit=" + visit
+				+ ", lineasdefactura=" + lineasdefactura + "]";
+	}	
 }
